@@ -1,0 +1,13 @@
+body {
+    background: #f2f3f4;
+    /*background: linear-gradient(90deg, rgb(247, 247, 247) 0%, rgb(205, 212, 226) 35%, rgb(205, 223, 226) 100%);*/
+    color: #515050;
+}
+#app {
+    max-width: 850px;
+    margin: 0 auto;
+}
+
+nav {
+    padding: 20px 0 20px 0;
+}
