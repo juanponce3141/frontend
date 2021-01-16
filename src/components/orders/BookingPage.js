@@ -6,14 +6,6 @@ import * as bookingActions from "../../redux/actions/bookingAction";
 import { connect } from "react-redux";
 
 class BookingPage extends Component {
-    constructor() {
-        super();
-        this.state =  {
-            booking: {
-                title: "test"
-            }
-        }
-    }
     componentDidMount() {
         const {booking, actions} = this.props;
         console.log("what");
@@ -23,7 +15,6 @@ class BookingPage extends Component {
             alert("Loading authors failed" + error)
         })
 
-        this.setState({ booking })
     }
 
     render() {
@@ -73,7 +64,7 @@ class BookingPage extends Component {
                         </div>
                     </div>
                 </div>
-                {this.state.booking.title}
+                {this.props.booking.title}
             </form>
         );
     }
