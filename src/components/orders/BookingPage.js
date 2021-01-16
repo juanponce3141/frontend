@@ -2,9 +2,29 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import {bindActionCreators} from "redux";
 import * as orderActions from "../../redux/actions/orderActions";
+import * as bookingActions from "../../redux/actions/bookingAction";
 import { connect } from "react-redux";
 
 class BookingPage extends Component {
+    constructor() {
+        super();
+        this.state =  {
+            booking: {
+                title: "test"
+            }
+        }
+    }
+    componentDidMount() {
+        const {booking, actions} = this.props;
+        console.log("what");
+        console.log(booking)
+
+        actions.loadBookings().catch(error => {
+            alert("Loading authors failed" + error)
+        })
+
+        this.setState({ booking })
+    }
 
     render() {
         return (
@@ -39,7 +59,7 @@ class BookingPage extends Component {
                                 className="form-select"
                                 aria-label="Default select example"
                             >
-                                <option value="11:00pm" selected>11:00am</option>
+                                <option value="11:00pm" defaultValue>11:00am</option>
                                 <option value="11:30pm">11:30am</option>
                                 <option value="12:00pm">12:00pm</option>
                                 <option value="12:30pm">12:30pm</option>
@@ -53,25 +73,29 @@ class BookingPage extends Component {
                         </div>
                     </div>
                 </div>
+                {this.state.booking.title}
             </form>
         );
     }
 }
 
 BookingPage.propTypes = {
-    orders: PropTypes.array.isRequired,
+    booking: PropTypes.object.isRequired,
     actions: PropTypes.object.isRequired
 };
 
 function mapStateToProps(state) {
     return {
-        bookings: state.bookings
+        booking: state.booking
     };
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        actions: bindActionCreators(orderActions, dispatch)
+        actions: {
+            createOrders: bindActionCreators(orderActions.createOrder, dispatch),
+            loadBookings: bindActionCreators(bookingActions.loadBookings, dispatch)
+        }
     };
 }
 
