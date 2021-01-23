@@ -33,9 +33,9 @@ class OrdersPage extends Component {
         this.setState({ order });
     };
 
-    handleChangeComments= event => {
+    handleChangeComments = event => {
         const order = { ...this.state.order, comment: event.target.value };
-        this.setState({ order: order.order });
+        this.setState({ order });
     };
 
     handleSubmit = event => {
@@ -188,7 +188,7 @@ class OrdersPage extends Component {
                     </tbody>
                 </table>
                 {this.props.orders.length > 0 ?
-                    <Link to={"/booking"}>
+                    <Link to={"/selectingtime"}>
                         <Button type="button" className="btn btn-success btn-lg btn-block" disabled={this.props.orders.length < 1}>Submit Order</Button>
                     </Link>
                     : <button type="button" className="btn btn-secondary btn-lg btn-block" disabled={true}>Finalize Order...</button>
